@@ -8,16 +8,13 @@ print(MESSAGES['welcome'])
 
 # Validate inputs
 def is_invalid(user_input):
-    if user_input.casefold() == 'NaN'.casefold():
+    if user_input.casefold() == 'nan'.casefold():
         return True
     try:
-        float(user_input)
+        number = float(user_input)
+        if number <= 0:
+            raise ValueError
     except ValueError:
-        return True
-    return False
-
-def is_zero(user_input):
-    if not float(user_input):
         return True
     return False
 
@@ -28,13 +25,13 @@ def prompt(message):
 def get_loan_amount():
     loan_amount = input(prompt(MESSAGES['loan_amount']))
     while is_invalid(loan_amount):
-        print(prompt('Please provide a valid number.'))
+        print(prompt('Please provide a valid number greater than 0.'))
         loan_amount = input(prompt(MESSAGES['loan_amount']))
     return float(loan_amount)
 
 def get_apr():
     apr = input(prompt(MESSAGES['apr']))
-    while is_invalid(apr) or is_zero(apr):
+    while is_invalid(apr):
         print(prompt('Please provide a valid '
                      'percentage (%) that is greater than 0.'))
         apr = input(prompt(MESSAGES['apr']))
@@ -42,7 +39,7 @@ def get_apr():
 
 def get_years():
     num_of_years = input(prompt(MESSAGES['num_of_years']))
-    while is_invalid(num_of_years) or is_zero(num_of_years):
+    while is_invalid(num_of_years):
         print(prompt('Please provide a valid '
                      'number of years that is greater than 0.'))
         num_of_years = input(prompt(MESSAGES['num_of_years']))
