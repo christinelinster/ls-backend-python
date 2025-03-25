@@ -1,14 +1,4 @@
-# Mortgage / Car Loan Calculator 
-
-# 1. Get 3 inputs from user (loan_amount, apr, and num_of_years)
-# 2. Validate those inputs are valid
-# 3. If inputs are not valid, reprompt the user to share their inputs
-# 4. Once inputs are valid, use converted float values to calculate monthly payments 
-# 5. Calculate the final monthly payment
-# 6. Return the final value to the user
-
 import json
-import pdb
 
 # Import JSON messages
 with open('messages.json', 'r') as file: 
@@ -40,7 +30,7 @@ def prompt(message):
 def get_loan_amount(): 
     loan_amount = input(prompt(MESSAGES['loan_amount']))
     while is_invalid(loan_amount):
-        print(prompt('Please provide a valid number'))
+        print(prompt('Please provide a valid number.'))
         loan_amount = input(prompt(MESSAGES['loan_amount']))
     return float(loan_amount)
 
