@@ -7,8 +7,8 @@ with open('messages.json', 'r') as file:
 print(MESSAGES['welcome'])
 
 # Validate inputs
+INVALID_INPUTS = {'nan', 'inf'}
 def is_invalid(user_input):
-    INVALID_INPUTS = {'nan', 'inf'}
     if user_input.casefold() in INVALID_INPUTS:
         return True
     try:
@@ -53,18 +53,15 @@ def get_monthly_payment(amount, apr, years):
     return monthly_payment
 
 # Calculate and output monthly payments to user
-while True: 
+while True:
     total_monthly_payments = get_monthly_payment(get_loan_amount(),
                                                 get_apr(),
                                                 get_years())
-    
+
     print(prompt('Your total monthly payments are: '
              f'${total_monthly_payments:.2f}!'))
-    
+
     another_calculation = input(prompt(MESSAGES['continue']))
 
     if another_calculation.lower() == 'n':
         break
-
-    
-    
