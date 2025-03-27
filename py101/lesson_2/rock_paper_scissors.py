@@ -1,22 +1,18 @@
 import random
 
 VALID_CHOICES = ["rock", "paper", "scissors", "lizard", "spock"]
+WINNING_CHOICES = {"rock": ("scissors", "lizard"),
+                   "paper": ("rock", "spock"),
+                   "scissors": ("paper", "lizard"),
+                   "spock": ("rock", "scissors")}
 
 def display_winner(player, computer):
     prompt(f"You chose {player}, computer chose {computer}")
-
-    if ((player == "rock" and computer in ["scissors", "lizard"]) or
-        (player == "paper" and computer in ["rock", "spock"]) or
-        (player == "scissors" and computer in ["paper", "lizard"]) or
-        (player == "lizard" and computer in ["spock", "paper"]) or
-        (player == "spock" and computer in ["rock" or "scissors"])):
+    
+    if computer in WINNING_CHOICES[player]:
         prompt("You win!")
-    elif ((computer == "rock" and player in ["scissors", "lizard"]) or
-          (computer == "paper" and player in ["rock", "spock"]) or
-          (computer == "scissors" and player in ["paper", "lizard"]) or
-          (computer == "lizard" and player in ["spock", "paper"]) or
-          (computer == "spock" and player in ["rock" or "scissors"])):
-            prompt("Computer wins!")
+    elif player in WINNING_CHOICES[computer]:
+        prompt("Computer wins!")
     else:
         prompt("It's a tie!")
 
