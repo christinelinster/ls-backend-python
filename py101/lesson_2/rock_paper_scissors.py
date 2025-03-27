@@ -1,10 +1,24 @@
 import random
 
-VALID_CHOICES = ["rock", "paper", "scissors", "lizard", "spock"]
-WINNING_CHOICES = {"rock": ("scissors", "lizard"),
-                   "paper": ("rock", "spock"),
-                   "scissors": ("paper", "lizard"),
-                   "spock": ("rock", "scissors")}
+CHOICES = ["rock", "paper", "scissors", "lizard", "spock"]
+VALID_CHOICES = {
+    "rock": ["rock", "r"],
+    "paper": ["paper", "p"],
+    "scissors": ["scissors", "s"],
+    "spock": ["spock", "sp"],
+    "lizard": ["lizard", "l"]
+}
+WINNING_CHOICES = {
+    "rock": ["scissors", "lizard"],
+    "paper": ["rock", "spock"],
+    "scissors": ["paper", "lizard"],
+    "spock": ["rock", "scissors"],
+    "lizard": ["paper", "spock"]
+}
+
+# Helper Functions
+def prompt(message):
+    print(f"==> {message}")
 
 def display_winner(player, computer):
     prompt(f"You chose {player}, computer chose {computer}")
@@ -16,18 +30,21 @@ def display_winner(player, computer):
     else:
         prompt("It's a tie!")
 
-def prompt(message):
-    print(f"==> {message}")
+def get_choice(choice):
+    for name, abbr in VALID_CHOICES.items():
+        if choice in abbr:
+            return name
+    return None
 
 while True:
-    prompt(f'Choose one: {", ".join(VALID_CHOICES)}')
-    choice = input()
+    prompt(f'Choose one: {", ".join(CHOICES)}')
+    choice = get_choice(input())
 
     while choice not in VALID_CHOICES:
         prompt("That's not a valid choice")
-        choice = input()
+        choice = get_choice(input())
 
-    computer_choice = random.choice(VALID_CHOICES)
+    computer_choice = random.choice(CHOICES)
 
     display_winner(choice, computer_choice)
 
