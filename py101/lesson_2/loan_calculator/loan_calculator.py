@@ -61,7 +61,13 @@ while True:
     print(prompt('Your total monthly payments are: '
              f'${total_monthly_payments:.2f}!'))
 
-    another_calculation = input(prompt(MESSAGES['continue']))
+    # Prompt for another calculation
+    while True:
+        answer = input(prompt(MESSAGES['continue'])).lower()
 
-    if another_calculation.lower() == 'n':
+        if answer.startswith('n') or answer.startswith('y'):
+            break
+        print(prompt(MESSAGES['invalid_choice']))
+
+    if answer[0] == 'n':
         break

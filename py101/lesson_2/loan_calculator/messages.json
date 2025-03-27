@@ -4,5 +4,6 @@
     "apr": "Enter the annual percentage rate (%): ",
     "num_of_years": "Enter the loan duration (in years): ",
     "zero_error": "Please provide a valid number greater than 0.",
-    "continue": "Do you want to make another calculation (y/n)? "
+    "continue": "Do you want to make another calculation (y/n)? ",
+    "invalid_choice": "That's not a valid choice"
 }
