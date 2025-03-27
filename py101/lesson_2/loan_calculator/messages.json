@@ -2,5 +2,7 @@
     "welcome": "Hello, welcome to your monthly loan calculator! \nLet's start by answering a few questions to help you find your answer: ",
     "loan_amount": "Enter the total loan amount ($): ", 
     "apr": "Enter the annual percentage rate (%): ",
-    "num_of_years": "Enter the loan duration (in years): "
+    "num_of_years": "Enter the loan duration (in years): ",
+    "zero_error": "Please provide a valid number greater than 0.",
+    "continue": "Do you want to make another calculation (y/n)? "
 }
