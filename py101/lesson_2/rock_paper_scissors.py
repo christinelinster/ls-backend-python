@@ -15,31 +15,23 @@ WINNING_CHOICES = {
     "spock": ["rock", "scissors"],
     "lizard": ["paper", "spock"]
 }
-
-computer_wins = 0
-player_wins = 0
-winner = False
-
 # Helper Functions
 def prompt(message):
     print(f"==> {message}")
 
 def get_point(player, computer):
-    global player_wins
-    global computer_wins
     prompt(f"You chose {player}, computer chose {computer}")
-    
+    result = ""
     if computer in WINNING_CHOICES[player]:
-        player_wins += 1
         prompt("One point for you!")
-
+        result = "player"
     elif player in WINNING_CHOICES[computer]:
-        computer_wins += 1
         prompt("One point for the computer!")
+        result = "computer"
     else:
         prompt("It's a tie!")
-    prompt(f"Player points: {player_wins} points")
-    prompt(f"Computer points: {computer_wins} points")
+
+    return result
 
 def get_choice(choice):
     choice = choice.lower()
@@ -49,15 +41,14 @@ def get_choice(choice):
     return None
 
 def display_winner(p_wins, c_wins):
-    global winner
     if p_wins >= 5:
         prompt("WINNER! WINNER! You win this round!")
-        winner = True
     elif c_wins >= 5:
-        prompt("DEFEAT :( The computer wins!")
-        winner = True
+        prompt("DEFEAT... The computer wins!")
 
-def main():
+def play_game(p_score, c_score):
+
+    # Get user choice
     prompt(f'Choose one: {", ".join(CHOICES)}')
     choice = get_choice(input())
 
@@ -65,26 +56,47 @@ def main():
         prompt("That's not a valid choice")
         choice = get_choice(input())
 
+    # Get computer choice
     computer_choice = random.choice(CHOICES)
-    get_point(choice, computer_choice)
 
-    if player_wins >= 5 or computer_wins >=5:
-        display_winner(player_wins, computer_wins)
+    # Determine who gets the point
+    point = get_point(choice, computer_choice)
 
+    if point == 'player':
+        p_score += 1
+    else:
+        c_score += 1
+    
+    prompt(f"Player Score: {p_score}")
+    prompt(f"Computer score: {c_score} points")
 
-while not winner or True:
+    return p_score, c_score
+
+def main():
+    player_score = 0
+    computer_score = 0
+    winner = False
+
+    while not winner:
+        player_score, computer_score = play_game(player_score, computer_score)
+            # Determine final winner
+        if player_score >= 5 or computer_score >=5:
+            display_winner(player_score, computer_score)
+            prompt(f"The final results are: \n"
+                f"Player Score: {player_score} \n"
+                f"Computer Score: {computer_score}")
+            winner = True
+
+while True:
     main()
+    while True:
+        prompt("Do you want to play again? (y/n)")
+        answer = input()
 
-    if winner:
-        while True:
-            prompt("Do you want to play again (y/n)?")
-            answer = input().lower()
-            if answer.startswith('n') or answer.startswith('y'):
-                break
-            prompt("That's not a valid choice")
-        if answer[0] == 'n':
+        if answer.startswith('n') or answer.startswith('y'):
             break
-        computer_wins = 0 
-        player_wins = 0 
-        winner = False
+        prompt("That is not a valid option. Please try again.")
 
+    if answer[0] == 'n':
+        prompt("Thank you for playing. Come again next time")
+        break
