@@ -1,0 +1,24 @@
+{
+    "choices": ["rock", "paper", "scissors", "lizard", "spock"],
+    "valid_choices": {
+        "rock": ["rock", "r"],
+        "paper": ["paper", "p"],
+        "scissors": ["scissors", "s"],
+        "spock": ["spock", "sp"],
+        "lizard": ["lizard", "l"]
+    },
+    "winning_choices": {
+        "rock": ["scissors", "lizard"],
+        "paper": ["rock", "spock"],
+        "scissors": ["paper", "lizard"],
+        "spock": ["rock", "scissors"],
+        "lizard": ["paper", "spock"]
+    },
+    "welcome": "WELCOME TO RPSLS!!!",
+    "instructions": "Instructions: Enter the first letter or the entire word. \n==> Note that spock excepts 'sp' as the abbreviated input.",
+    "winner": "WINNER! WINNER! You win this round!",
+    "defeat": "DEFEAT... The computer wins!",
+    "invalid_choice": "That is not a valid choice. Please try again.",
+    "play_again": "Do you want to play again? (y/n)",
+    "goodbye": "Thank you for playing. Come again next time."
+}
