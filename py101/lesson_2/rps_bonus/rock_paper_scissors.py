@@ -93,11 +93,11 @@ while True:
     main()
     while True:
         prompt(INPUTS['play_again'])
-        answer = input()
+        answer = input().lower()
 
         if answer.startswith('n') or answer.startswith('y'):
             break
-        prompt(INPUTS('invalid_choice'))
+        prompt(INPUTS['invalid_choice'])
 
     if answer[0] == 'n':
         prompt(INPUTS['goodbye'])
