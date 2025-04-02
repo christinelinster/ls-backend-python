@@ -19,7 +19,7 @@ def get_choice(choice):
             return name
     return None
 
-def get_point(player, computer):
+def compare_choices(player, computer):
     prompt(f"You chose {player}, computer chose {computer}.")
 
     if computer in WINNING_CHOICES[player]:
@@ -45,8 +45,7 @@ def display_winner(p_wins, c_wins):
     elif c_wins >= 5:
         prompt(INPUTS['defeat'])
 
-def play_game(p_score, c_score):
-
+def get_point():
     # Get user choice
     prompt(f'Choose one: {", ".join(CHOICES)}.')
     choice = get_choice(input())
@@ -59,7 +58,13 @@ def play_game(p_score, c_score):
     computer_choice = random.choice(CHOICES)
 
     # Determine who gets the point
-    point = get_point(choice, computer_choice)
+    point = compare_choices(choice, computer_choice)
+    return point
+
+
+def play_game(p_score, c_score):
+
+    point = get_point()
 
     if point == 'player':
         prompt("One point for you!")
